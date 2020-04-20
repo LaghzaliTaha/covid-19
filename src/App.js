@@ -1,11 +1,9 @@
 import React from 'react';
-import { Button } from 'antd';
 import './App.css';
+import SiderDemo from "./components/main";
 
 const App = () => (
-    <div className="App">
-        <Button type="primary">Button</Button>
-    </div>
+<SiderDemo />
 );
 
 export default App;
