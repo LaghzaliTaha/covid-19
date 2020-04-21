@@ -40,7 +40,7 @@ const RoundBar = (props) => {
   return <path d={d} stroke="none" fill={color} />;
 };
 
-export default class CustomBarChart extends Component {
+export default function AwesomeBarChat() {
   defs = (activeChartConfig) => (
     <defs>
       <linearGradient x1="100%" y1="0%" x2="50%" y2="180%" id="linearGradient-1">
@@ -63,8 +63,6 @@ export default class CustomBarChart extends Component {
       </linearGradient>
     </defs>
   )
-
-  render() {
     const {
       family, sales, title, activeChartConfig,
     } = this.props;
@@ -146,5 +144,5 @@ export default class CustomBarChart extends Component {
         </Grid>
       </Grid>
     );
-  }
+
 }
