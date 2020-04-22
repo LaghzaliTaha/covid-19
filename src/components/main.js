@@ -1,5 +1,9 @@
 import React from 'react';
+import { map } from 'lodash';
 import { Layout, Menu } from 'antd';
+import salesConsolidation from './mocks/lineChartMock';
+import { chartsConfig } from './charts/LineChart/constant';
+import  AwesomeLineChart  from './charts/LineChart/index';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
@@ -56,7 +60,33 @@ class SiderDemo extends React.Component {
                             minHeight: 280,
                         }}
                     >
-                        Content
+                        {map(salesConsolidation.families, (family) => (
+                            <div
+                                key={family.name}
+                                style={{
+                                    height: 222,
+                                    borderLeftStyle: 'none',
+                                    marginTop: 24,
+                                    marginLeft: -30,
+                                }}
+                            >
+                                <AwesomeLineChart
+                                    family={family.data || []}
+                                    salesSum={family.sum}
+                                    currentYear={"2020"}
+                                    background={chartsConfig[family.name].background}
+                                    boxshadow={chartsConfig[family.name].boxShadow}
+                                    familyname={chartsConfig[family.name].reportedFamilies}
+                                    stroke={chartsConfig[family.name].stroke}
+                                    label={chartsConfig[family.name].label}
+                                    //disabled={selectedFamilyLower !== family.name}
+                                    //onClick={() => onSalesConsolidationClick(family.id)}
+                                    chartWidth="95%"
+                                    chartHeight="100%"
+                                    horizontal
+                                />
+                            </div>
+                        ))}
                     </Content>
                 </Layout>
             </Layout>

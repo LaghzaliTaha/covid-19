@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import dot from 'images/dot.svg';
-import { formatNum } from 'arbitration/utils/numbers';
+import React from 'react';
+import dot from '../../../images/dot.svg';
+import { formatNum } from '../../../utils/numbers';
 import {
   LineChart, Line, CartesianGrid, XAxis, Tooltip, ResponsiveContainer,
 } from 'recharts';
-import 'arbitration/components/common/BarChart/index.css';
+import './charts.css';
 
 
 const CustomTooltip = ({ active, payload }) => {
@@ -87,11 +87,11 @@ const CustomActiveDot = ({ active }) => {
   return null;
 };
 
-export default function AwesomeLineChart() {
+ const  AwesomeLineChart = (props) => {
     const {
       family, background, boxshadow, familyname, onClick,
       chartWidth, chartHeight, horizontal, stroke, label, disabled, salesSum, currentYear,
-    } = this.props;
+    } = props;
     return (
       <div
         style={{
@@ -182,3 +182,4 @@ export default function AwesomeLineChart() {
     );
 
 }
+export default AwesomeLineChart;
