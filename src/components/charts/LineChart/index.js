@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{ useState,useEffect }  from 'react';
 import dot from '../../../images/dot.svg';
 import { formatNum } from '../../../utils/numbers';
 import {
@@ -88,6 +88,31 @@ const CustomActiveDot = ({ active }) => {
 };
 
  const  AwesomeLineChart = (props) => {
+     const [error, setError] = useState(null);
+     const [isLoaded, setIsLoaded] = useState(false);
+     const [items, setItems] = useState([]);
+     const fetchData = {
+         method: 'POST',
+         body: JSON.stringify({type: "get_chart_data"}),
+         headers: new Headers()
+     }
+     useEffect(() => {
+         fetch("https://marocov.herokuapp.com/api",fetchData)
+             .then(res => res.json())
+             .then(
+                 (result) => {
+                     setIsLoaded(true);
+                     setItems(formatCovidEvolution(result.items));
+                 },
+                 // Note: it's important to handle errors here
+                 // instead of a catch() block so that we don't swallow
+                 // exceptions from actual bugs in components.
+                 (error) => {
+                     setIsLoaded(true);
+                     setError(error);
+                 }
+             )
+     }, [])
     const {
       family, background, boxshadow, familyname, onClick,
       chartWidth, chartHeight, horizontal, stroke, label, disabled, salesSum, currentYear,
